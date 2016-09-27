@@ -1,3 +1,9 @@
+# Vim swap files
+*.swp
+
+# Build directory
+build/
+
 # Compiled Object files
 *.slo
 *.lo
