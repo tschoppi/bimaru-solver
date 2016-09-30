@@ -32,6 +32,11 @@ class Board {
     // Constructor from a known board and outstanding boats
     Board(std::vector< std::vector<char> > board, std::vector<int> boats,
             std::vector<int> top_constr, std::vector<int> side_constr);
+
+    // Accessors
+    int getSize() {return size;}
+    std::vector<int> getTopConstraints() {return top_constraints;}
+    std::vector<int> getSideConstraints() {return side_constraints;}
     
 };
 

@@ -22,3 +22,27 @@ TEST(BoardClass, Initialisation) {
     delete myBoard;
 }
 
+class BoardTest : public ::testing::Test {
+  protected:
+    virtual void SetUp() {
+        size = 4;
+        constraints = {0, 0, 0, 0};
+        std::vector<int> boats = {4, 3, 4};
+        myBoard = new bimaru::Board(size, boats, constraints, constraints);
+    }
+
+    int size;
+    bimaru::Board * myBoard;
+    std::vector<int> constraints;
+
+    virtual void TearDown() {
+        delete myBoard;
+    }
+};
+
+TEST_F(BoardTest, Accessors) {
+    EXPECT_EQ(myBoard->getSize(), size);
+    EXPECT_EQ(myBoard->getTopConstraints(), constraints);
+    EXPECT_EQ(myBoard->getSideConstraints(), constraints);
+}
+
