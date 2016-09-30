@@ -36,7 +36,9 @@ class Board {
   int getSize() {return size;}
   std::vector<int> getTopConstraints() {return top_constraints;}
   std::vector<int> getSideConstraints() {return side_constraints;}
-
+  
+  // Queries
+  bool isSolved();
 };
 
 } // namespace bimaru

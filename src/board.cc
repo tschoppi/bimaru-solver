@@ -24,4 +24,15 @@ Board::Board(std::vector< std::vector<char> > board,
   boats(boats)
 {}
 
+// isSolved() checks that all constraints are 0, and that no boats are left
+// outstanding, because these are the only two conditions that need to be
+// fulfilled (boat placement legality is covered during boat placement).
+bool Board::isSolved() {
+  for(unsigned int i = 0; i < top_constraints.size(); i++) {
+    if(top_constraints[i] != 0) return false;
+    if(side_constraints[i] != 0) return false;
+  }
+  return boats.empty();
+}
+
 } // namespace bimaru

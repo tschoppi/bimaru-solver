@@ -26,23 +26,30 @@ class BoardTest : public ::testing::Test {
  protected:
   virtual void SetUp() {
     size = 4;
-    constraints = {0, 0, 0, 0};
+    my_constraints = {0, 0, 0, 0};
     std::vector<int> boats = {4, 3, 4};
-    myBoard = new bimaru::Board(size, boats, constraints, constraints);
+    myBoard = new bimaru::Board(size, boats, my_constraints, my_constraints);
+    emptyBoard = new bimaru::Board(size, std::vector<int>({}), my_constraints, my_constraints);
   }
 
   int size;
   bimaru::Board * myBoard;
-  std::vector<int> constraints;
+  bimaru::Board * emptyBoard;
+  std::vector<int> my_constraints;
 
   virtual void TearDown() {
     delete myBoard;
+    delete emptyBoard;
   }
 };
 
 TEST_F(BoardTest, Accessors) {
   EXPECT_EQ(myBoard->getSize(), size);
-  EXPECT_EQ(myBoard->getTopConstraints(), constraints);
-  EXPECT_EQ(myBoard->getSideConstraints(), constraints);
+  EXPECT_EQ(myBoard->getTopConstraints(), my_constraints);
+  EXPECT_EQ(myBoard->getSideConstraints(), my_constraints);
 }
 
+TEST_F(BoardTest, Queries) {
+  EXPECT_FALSE(myBoard->isSolved());
+  EXPECT_TRUE(emptyBoard->isSolved());
+}
